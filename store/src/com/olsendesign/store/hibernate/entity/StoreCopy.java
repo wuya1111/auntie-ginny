@@ -30,6 +30,8 @@ public class StoreCopy {
 	@Column(name="copy_body")
 	private String copyBody;
 	
+	@Column(name="copy_link")
+	private String copyLink;
 	
 	@Column(name="start_date")
 	private Date startDate;
@@ -73,6 +75,25 @@ public class StoreCopy {
 	public void setCopyBody(String copyBody) {
 		this.copyBody = copyBody;
 	}
+
+	public int getStoreCopyId() {
+		return storeCopyId;
+	}
+
+	public void setStoreCopyId(int storeCopyId) {
+		this.storeCopyId = storeCopyId;
+	}
+
+
+	public String getCopyLink() {
+		return copyLink;
+	}
+
+
+	public void setCopyLink(String copyLink) {
+		this.copyLink = copyLink;
+	}
+
 
 	public Date getStartDate() {
 		return startDate;

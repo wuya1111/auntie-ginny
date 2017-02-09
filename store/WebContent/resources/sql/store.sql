@@ -68,6 +68,7 @@ CREATE TABLE `store_copy`(
   `store_copy_id` int(11) NOT NULL AUTO_INCREMENT,
   `copy_name` varchar(40) NOT NULL,
   `copy_body` varchar(2000) DEFAULT NULL,
+  `copy_link` varchar(300) DEFAULT NULL,
   `start_date` datetime,
   `end_date` datetime,
   `store_id` int(11) DEFAULT NULL,
@@ -77,9 +78,9 @@ CREATE TABLE `store_copy`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, START_DATE, END_DATE, STORE_ID) values (1,'Test Copy One','<p>This is the copy body for copy test one.</p>','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, START_DATE, END_DATE, STORE_ID) values (2,'Test Copy Two','<p>This is the copy body for copy test two.</p>','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, START_DATE, END_DATE, STORE_ID) values (3,'Test Copy Three','<p>This is the copy body for copy test three.</p>','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (1,'Test Copy One','<p>This is the copy body for copy test one.</p>','link-one','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (2,'Test Copy Two','<p>This is the copy body for copy test two.</p>','link-two','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (3,'Test Copy Three','<p>This is the copy body for copy test three.</p>','link-three','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
 
 DROP TABLE IF EXISTS `product`;
 
