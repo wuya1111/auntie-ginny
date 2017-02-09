@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,10 +29,12 @@ public class Store {
 	@Column(name="title")
 	private String title;
 	
-	@OneToMany(mappedBy="store", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="store_id")
 	private Set<StoreCopy> storeCopy = new HashSet<StoreCopy>();
 	
-	@OneToMany(mappedBy="store", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="store_id")
 	private Set<Product> products = new HashSet<Product>();	
 	
 	@Column(name="header")

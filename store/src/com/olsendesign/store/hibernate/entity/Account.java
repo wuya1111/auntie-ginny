@@ -15,8 +15,8 @@ public class Account {
   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="account_id")
+	private int accountId;
 	
 	@Column(name="email_address")
 	private String emailAddress;
@@ -38,12 +38,12 @@ public class Account {
 		
 	}
 
-	public int getId() {
-		return id;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAccountId(int id) {
+		this.accountId = id;
 	}
 
 	public String getEmailAddress() {
@@ -80,7 +80,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", emailAddress=" + emailAddress + ", password=" + password + ", active=" + active
+		return "Account [id=" + accountId + ", emailAddress=" + emailAddress + ", password=" + password + ", active=" + active
 				+ "]";
 	}
 	

@@ -2,11 +2,26 @@
 .project
 .settings
 .classpath
+.metadata
+.recommenders
 build/
 *.class
+Servers
+hibernate-tutorial
+RemoteSystemsTempFiles
+Servers
+spring-demo-annotations
+spring-demo-one
+spring-mvc-demo
+store.zip
+web-customer-tracker
+lib.zip
 
 # Contains Password Only save Template
 hibernate.cfg.xml
+
+*.swp
+*~
 
 # Windows image file caches
 Thumbs.db

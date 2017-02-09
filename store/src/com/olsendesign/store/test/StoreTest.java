@@ -1,14 +1,14 @@
 package com.olsendesign.store.test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.olsendesign.store.hibernate.entity.Account;
 import com.olsendesign.store.hibernate.entity.Product;
 import com.olsendesign.store.hibernate.entity.Store;
+import com.olsendesign.store.hibernate.entity.StoreCopy;
+import com.olsendesign.store.hibernate.entity.User;
 import com.olsendesign.store.service.StoreService;
 
 public class StoreTest {
@@ -20,6 +20,10 @@ public class StoreTest {
 		//create session factory
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
 						.addAnnotatedClass(Store.class)
+						.addAnnotatedClass(StoreCopy.class)
+						.addAnnotatedClass(Account.class)
+						.addAnnotatedClass(User.class)
+						.addAnnotatedClass(Product.class)
 						.buildSessionFactory();
 				
 		// create session

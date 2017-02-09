@@ -3,26 +3,27 @@ package com.olsendesign.store.hibernate.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="user")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="account_id", unique=true, nullable=false)
+	@GeneratedValue(generator="gen")
+	@GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="account"))
+	private int accountId;	
 	
-	//@Column(name="account_id", insert="false", update="false")
-	//private int account_id;
+	@Column(name="salutation")
+	private String salutation;
 
-	@OneToOne  //(mappedBy="user", cascade=CascadeType.ALL)
-	private Account account;
-	  
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -35,32 +36,28 @@ public class User {
 	@Column(name="suffix")
 	private String suffix;
 	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Account account;
+	
 	public User() {
 		
 	}
 
-	public int getId() {
-		return id;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
-//	public int getAccount_id() {
-//		return account_id;
-//	}
-//
-//	public void setAccount_id(int account_id) {
-//		this.account_id = account_id;
-//	}
-
-	public Account getAccount() {
-		return account;
+	public String getSalutation() {
+		return salutation;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setSalutation(String salutation) {
+		this.salutation = salutation;
 	}
 
 	public String getFirstName() {
@@ -97,8 +94,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", account=" + account + ", firstName=" + firstName + ", middleName=" + middleName
-				+ ", lastName=" + lastName + ", suffix=" + suffix + "]";
+		return "User [accountId=" + accountId + ", salutation=" + salutation + ", firstName=" + firstName
+				+ ", middleName=" + middleName + ", lastName=" + lastName + ", suffix=" + suffix + "]";
 	}
 
 	
