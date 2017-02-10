@@ -98,6 +98,36 @@ public class Store {
 		this.copyright = copyright;
 	}
 
+	public Set<StoreCopy> getStoreCarouselCopy() {
+		Set<StoreCopy> carousels = new HashSet<StoreCopy>();
+		for (StoreCopy copy : this.storeCopy ) {
+		    if( copy.getCopyType().matches("carousel") ) {
+		    	carousels.add(copy);
+		    }
+		}
+		return carousels;
+	}
+
+	public Set<StoreCopy> getStorePostCopy() {
+		Set<StoreCopy> posts = new HashSet<StoreCopy>();
+		for (StoreCopy copy : this.storeCopy ) {
+		    if( copy.getCopyType().matches("posting") ) {
+		    	posts.add(copy);
+		    }
+		}
+		return posts;
+	}
+	
+	public Set<StoreCopy> getStoreFeaturetteCopy() {
+		Set<StoreCopy> featurettes = new HashSet<StoreCopy>();
+		for (StoreCopy copy : this.storeCopy ) {
+		    if( copy.getCopyType().matches("featurette") ) {
+		    	featurettes.add(copy);
+		    }
+		}
+		return featurettes;
+	}
+	
 	public Set<StoreCopy> getStoreCopy() {
 		return storeCopy;
 	}

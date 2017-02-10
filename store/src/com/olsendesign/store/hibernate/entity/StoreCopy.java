@@ -33,6 +33,18 @@ public class StoreCopy {
 	@Column(name="copy_link")
 	private String copyLink;
 	
+	@Column(name="copy_link_text")
+	private String copyLinkText;
+		
+	@Column(name="copy_image")
+	private String copyImage;
+	
+	@Column(name="copy_image_alt_text")
+	private String copyImageAltText;
+	
+	@Column(name="copy_type")
+	private String copyType;
+	
 	@Column(name="start_date")
 	private Date startDate;
 	
@@ -42,7 +54,6 @@ public class StoreCopy {
 	public StoreCopy() {
 		
 	}
-
 
 	public Store getStore() {
 		return this.store;
@@ -84,14 +95,44 @@ public class StoreCopy {
 		this.storeCopyId = storeCopyId;
 	}
 
-
 	public String getCopyLink() {
 		return copyLink;
 	}
 
+	public String getCopyLinkText() {
+		return copyLinkText;
+	}
+
+	public void setCopyLinkText(String copyLinkText) {
+		this.copyLinkText = copyLinkText;
+	}
 
 	public void setCopyLink(String copyLink) {
 		this.copyLink = copyLink;
+	}
+
+	public String getCopyImage() {
+		return copyImage;
+	}
+
+	public void setCopyImage(String copyImage) {
+		this.copyImage = copyImage;
+	}
+
+	public String getCopyImageAltText() {
+		return copyImageAltText;
+	}
+
+	public void setCopyImageAltText(String copyImageAltText) {
+		this.copyImageAltText = copyImageAltText;
+	}
+
+	public String getCopyType() {
+		return copyType;
+	}
+
+	public void setCopyType(String copyType) {
+		this.copyType = copyType;
 	}
 
 
@@ -113,11 +154,9 @@ public class StoreCopy {
 
 	@Override
 	public String toString() {
-		return "StoreCopy [id=" + storeCopyId + ", store=" + store.getName() + ", copyName=" + copyName + ", copyBody=" + copyBody
+		return "StoreCopy [storeCopyId=" + storeCopyId + ", store=" + store + ", copyName=" + copyName + ", copyBody="
+				+ copyBody + ", copyLink=" + copyLink + ", copyImage=" + copyImage + ", copyType=" + copyType
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}
-	public String getToString() {
-		return this.toString();
 	}
 	
 }

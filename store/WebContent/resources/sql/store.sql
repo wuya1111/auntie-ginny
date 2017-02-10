@@ -69,8 +69,13 @@ CREATE TABLE `store_copy`(
   `copy_name` varchar(40) NOT NULL,
   `copy_body` varchar(2000) DEFAULT NULL,
   `copy_link` varchar(300) DEFAULT NULL,
+  `copy_link_text` varchar(300) DEFAULT NULL,
+  `copy_image` varchar(100) DEFAULT NULL,
+  `copy_image_alt_text` varchar(100) DEFAULT NULL,
+  `copy_type` varchar(40) DEFAULT NULL,
   `start_date` datetime,
   `end_date` datetime,
+
   `store_id` int(11) DEFAULT NULL,
   
   PRIMARY KEY (`store_copy_id`),
@@ -78,9 +83,18 @@ CREATE TABLE `store_copy`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (1,'Test Copy One','<p>This is the copy body for copy test one.</p>','link-one','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (2,'Test Copy Two','<p>This is the copy body for copy test two.</p>','link-two','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
-insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, START_DATE, END_DATE, STORE_ID) values (3,'Test Copy Three','<p>This is the copy body for copy test three.</p>','link-three','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (1,'Carousel Copy One'    ,'<p>This is the carousel copy body for copy test one.</p>','img-one.png','image one alt text','link-one','View details One &raquo;','carousel','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (2,'Carousel Copy Two'    ,'<p>This is the carousel copy body for copy test two.</p>','img-two.png','image two alt text','link-two','View details Two &raquo;','carousel','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (3,'Carousel Copy Three'  ,'<p>This is the carousel copy body for copy test three.</p>','img-three.png','image three alt text','link-three','View details Three&raquo;','carousel','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (4,'Featurette Copy One'  ,'<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It\'ll blow your mind.</span></h2><p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>','img-one.png','image one alt text','link-one','View details One&raquo;','featurette','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (5,'Featurette Copy Two'  ,'<p>This is the featurette copy body for copy test two.</p>','img-two.png','image two alt text','link-two','View details Two &raquo;','featurette','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (6,'Featurette Copy Three','<p>This is the featurette copy body for copy test three.</p>','img-three.png','image three alt text','link-three','View details Three&raquo;','featurette','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (7,'Posting Copy One'     ,'<h2>Posting One</h2><p>This is the posting copy body for copy test one.</p>','img-one.png','link-one','View details One &raquo;','image one alt text','posting','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (8,'Posting Copy Two'     ,'<h2>Posting Two</h2><p>This is the posting copy body for copy test two.</p>','img-two.png','link-two','View details Two &raquo;','image two alt text','posting','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+insert into store_copy (STORE_COPY_ID, COPY_NAME, COPY_BODY, COPY_LINK, COPY_LINK_TEXT, COPY_IMAGE, COPY_IMAGE_ALT_TEXT, COPY_TYPE, START_DATE, END_DATE, STORE_ID) values (9,'Posting Copy Three'   ,'<h2>Posting Three</h2><p>This is the posting copy body for copy test three.</p>','img-three.png','link-three','View details Three &raquo;','image three alt text','posting','2017-01-01 00:00:01','2020-01-01 00:00:01',1);
+
+
+
 
 DROP TABLE IF EXISTS `product`;
 
