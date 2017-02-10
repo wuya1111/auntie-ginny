@@ -61,7 +61,7 @@ public class AccountDaoImpl implements AccountDao {
 		System.out.println(" >> Hashed Password: " + hashedPassword);
 		Query query = currentSession.createQuery("from Account where emailAddress=:email and password=:password");
         query.setParameter("email", email);
-        query.setParameter("password", password);
+        query.setParameter("password", hashedPassword);
         try {
 	        auth_account = (Account) query.getSingleResult();
 	        auth_account.setActive(true);

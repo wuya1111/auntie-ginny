@@ -45,6 +45,9 @@ public class StoreCopy {
 	@Column(name="copy_type")
 	private String copyType;
 	
+	@Column(name="copy_order")
+	private String copyOrder;	
+	
 	@Column(name="start_date")
 	private Date startDate;
 	
@@ -135,6 +138,13 @@ public class StoreCopy {
 		this.copyType = copyType;
 	}
 
+	public String getCopyOrder() {
+		return copyOrder;
+	}
+
+	public void setCopyOrder(String copyOrder) {
+		this.copyOrder = copyOrder;
+	}
 
 	public Date getStartDate() {
 		return startDate;

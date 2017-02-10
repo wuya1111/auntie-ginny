@@ -20,7 +20,7 @@ public class StoreCopyDAOImpl implements StoreCopyDAO {
 	@Override
 	public List<StoreCopy> getAllStoreCopy() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<StoreCopy> query = currentSession.createQuery("from StoreCopy order by name", StoreCopy.class);
+		Query<StoreCopy> query = currentSession.createQuery("from StoreCopy order by copyOrder", StoreCopy.class);
 		List<StoreCopy> storeCopy = query.getResultList();
 		return storeCopy;
 	}
