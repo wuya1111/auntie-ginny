@@ -46,4 +46,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountDAO.loginUser(account);
 	}
 
+	@Override
+	@Transactional
+	public Account getAccountFromHash(String accountHash) {
+		return accountDAO.getAccountFromHash(accountHash);
+	}
+
+	
 }

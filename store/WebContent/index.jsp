@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.io.*,java.util.*" %>
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
@@ -20,72 +23,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <c:choose>
-          <c:when test="${account.active}">
-	        <div class="account_info" style="color:white;">
-	              <c:set var="user" value="${account.user}" scope="page"></c:set>
-                  <strong>Hello <c:out value="${user.firstName}" /></strong>
-            </div>  
-          </c:when>
-          <c:otherwise>
-          	  <form method="POST" action="/store/login" modelAttribute="account" class="navbar-form navbar-right">
-	            <div class="form-group">
-	              <input name="emailAddress" type="email" placeholder="Email" class="form-control"/>
-	            </div>
-	            <div class="form-group">
-	              <input name="password" type="password" placeholder="Password" class="form-control">
-	            </div>
-	            <input type="submit" class="btn btn-success">Sign in</input>
-	          </form>              
-          </c:otherwise>
-        </c:choose>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <!-- div class="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div -->
-
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <c:forEach items="${store.storeCopy}" var="copySection" >
-          <div class="col-md-4">
-            <h2>${copySection.copyName}</h2>
-            ${copySection.copyBody}
-            <p><a class="btn btn-default" href="${copySection.copyLink}" role="button">View details &raquo;</a></p>
-          </div>
-        </c:forEach>
-      </div>
-      </div>
-
-      <hr>
-
+      <a href="/store/main">STORE</a>
       <footer>
         <p>&copy; 2016 Company, Inc.</p>
       </footer>
     </div> <!-- /container -->
-
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

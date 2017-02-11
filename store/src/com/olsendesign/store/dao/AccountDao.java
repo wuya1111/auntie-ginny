@@ -10,4 +10,5 @@ public interface AccountDao {
 	void saveAccount(Account theAccount);
 	void deleteAccount(int theId);
 	Account loginUser(Account account);
+	Account getAccountFromHash(String accountHash);
 }

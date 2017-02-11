@@ -10,4 +10,5 @@ public interface AccountService {
 	public void saveAccount(Account theAccount);
 	public void deleteAccount(int theId);
 	public Account loginUser(Account theAccount);
+	public Account getAccountFromHash(String accountHash);
 }

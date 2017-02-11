@@ -27,10 +27,12 @@
               <div class="col-md-5 col-md-pull-7">
             </c:otherwise>
           </c:choose>
-            <img class="featurette-image img-responsive center-block" data-src="${pageContext.request.contextPath}/resources/images/${feature.copyImage}" alt="${feature.copyImageAltText}">
+            <a href="${feature.copyLink}">
+              <img class="featurette-image img-responsive center-block" src="${pageContext.request.contextPath}/resources/images/${feature.copyImage}" alt="${feature.copyImageAltText}">
+            </a>
         </div><!-- /.col-md# -->
         </div><!-- /.row featurette -->
       </c:forEach>
       <hr class="featurette-divider">
-    </div>
+    </div><!-- /.container marketing -->
     <!-- /END THE FEATURETTES --> 
