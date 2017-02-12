@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS `store_copy`;
 
 CREATE TABLE `store_copy`(
   `store_copy_id` int(11) NOT NULL AUTO_INCREMENT,
-  `copy_name` varchar(40) NOT NULL,
+  `copy_name` varchar(40) DEFAULT NULL,
   `copy_body` varchar(2000) DEFAULT NULL,
   `copy_link` varchar(300) DEFAULT NULL,
   `copy_link_text` varchar(300) DEFAULT NULL,
@@ -79,7 +79,6 @@ CREATE TABLE `store_copy`(
   `copy_order` int(3) DEFAULT 0,
   `start_date` datetime,
   `end_date` datetime,
-
   `store_id` int(11) DEFAULT NULL,
   
   PRIMARY KEY (`store_copy_id`),
@@ -142,7 +141,12 @@ ALTER TABLE account
     add constraint `FK_USER` 
     FOREIGN KEY (`user_id`) 
     references `user` (`account_id`); 
-
+    
+ALTER TABLE account
+    add constraint `FK_ROLE` 
+    FOREIGN KEY (`role_id`) 
+    references `role` (`role_id`);
+    
 ALTER TABLE product
     add constraint `FK_STORE`
     foreign key (`store_id`)

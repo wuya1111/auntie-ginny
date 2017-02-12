@@ -1,7 +1,9 @@
 package com.olsendesign.controller;
 
+import java.util.HashSet;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.olsendesign.store.hibernate.entity.Account;
 import com.olsendesign.store.hibernate.entity.Store;
@@ -30,7 +30,7 @@ public class StoreController {
 	
     @RequestMapping("/")
     public String home() {
-        return "redirect:main-page";
+        return "main-page";
     }
 	
 	@RequestMapping("/main")
@@ -99,27 +99,6 @@ public class StoreController {
 		return "main-page";
 	}
 	
-	@RequestMapping("/admin")
-	public String admin(@CookieValue(value="accountCookie", defaultValue="") String accountHash,@CookieValue(value="storeId", defaultValue="1") String storeId, Model model, HttpServletResponse response) {
-	    
-		System.out.println("Inside Store admin()");
-		Store store = storeService.getStore( new Integer(storeId));
-		model.addAttribute("store", store);
-		
-		Cookie cookie = new Cookie("storeId", storeId );
-		response.addCookie(cookie);
-		
-		Account account = null;
-		if ( accountHash != "" ) {
-		    account = accountService.getAccountFromHash(accountHash);
-		    if( account != null ) {
-		        model.addAttribute("account", account);
-		        model.addAttribute("user", account.getUser());
-		        Cookie accountCookie = new Cookie("accountCookie", account.getAccountHash());
-		        response.addCookie(accountCookie);
-		        return "admin-main-page";
-		    }
-		} 
-		return "main-page";
-	}	
+	
+	
 }

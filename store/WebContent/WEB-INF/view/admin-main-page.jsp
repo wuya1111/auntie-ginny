@@ -5,28 +5,37 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.io.*,java.util.*" %>
 <jsp:include page="includes/header.jsp"></jsp:include>
-    <jsp:include page="includes/navbar.jsp"/>
 
+<script>
+//insert this in your jquery
+//control the resizing of menu and go down the content in the correct position
+    $("#navMenu").resize(function () {
+        $('#godown').height($("#navMenu").height() + 10);
+    });
+    if ($("#navMenu").height() > $('#godown').height()) $('#godown').height($("#navMenu").height() + 10);
+</script>	
+
+<jsp:include page="includes/navbar.jsp"/>
+
+<div class="godown-60" id="godown" style="padding-top:50px;"></div>
 <div class="container">
-	<form>
-		<div class="form-group">
-			<label for="exampleInputEmail1">Email address</label> 
-			<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-		</div>
-		<div class="form-group">
-			<label for="exampleInputPassword1">Password</label>
-			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		</div>
-		<div class="form-group">
-			<label for="exampleInputFile">File input</label> \
-			<input type="file" id="exampleInputFile">
-			<p class="help-block">Example block-level help text here.</p>
-		</div>
-		<div class="checkbox">
-			<label> <input type="checkbox"> Check me out </label>
-		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
-	</form>
-</div>
+    <div class="page-header">
+        <h1>Administration Menu<small> so be careful!</small></h1>
+    </div>
+ 
+    <h2>Links</h2>
+    <ul>
+        <li><a href="admin/stores">Stores</a>
+        <ul>
+          <c:forEach items="${stores}" var="store">
+              <li><a href="<c:url value="store/edit/${store.storeId}" />">${store.name}</a></li>
+          </c:forEach>
+        </ul>
+        </li>
+        <li><a href="profile">Profile</a>
+        <li><a href="account">Account</a>
+    </ul>
+ 
+    <hr/>
 
-<jsp:include page="includes/footer.jsp"></jsp:include>
+    <jsp:include page="includes/footer.jsp"></jsp:include>

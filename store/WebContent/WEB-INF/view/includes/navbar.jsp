@@ -19,7 +19,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="<c:url value="/main" />">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#support">Support</a></li>
                 <li class="dropdown">
@@ -51,7 +51,7 @@
                         <c:set var="role" value="${account.role}"></c:set>
                         <c:if test="${role.roleName == 'ADMIN'}">
                             <li role="separator" class="divider"></li>
-                            <li><a href="admin"><span class="glyphicon glyphicon-dashboard"></span> Admin</a></li>
+                            <li><a href="<c:url value="/admin/main"/>"><span class="glyphicon glyphicon-dashboard"></span> Admin</a></li>
                         </c:if>
                       </ul>
                     </li>
