@@ -39,8 +39,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/main")
-	public String adminMain(@CookieValue(value="accountCookie", defaultValue="") String accountHash, Model model, HttpServletResponse response) {
+	public String adminMain(@CookieValue(value="accountCookie", defaultValue="") String accountHash,@CookieValue(value="storeId", defaultValue="-1") int storeId, Model model, HttpServletResponse response) {
 		System.out.println("Inside adminHome() - Admin Controller ");
+		
+		if ( storeId > 0 ) {
+		    Store store = storeService.getStore(storeId);
+		    if ( store != null ) {
+		        model.addAttribute("store", store);
+		    }
+		}
 		
 		List<Store> stores = storeService.getStores();
 		model.addAttribute("stores", stores);
