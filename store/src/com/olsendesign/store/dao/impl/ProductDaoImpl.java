@@ -34,8 +34,11 @@ public class ProductDaoImpl implements ProductDAO {
 
 	@Override
 	public void saveProduct(Product product) {
+		System.out.println("SAVE PRODUCT 1");
 		Session currentSession = sessionFactory.getCurrentSession();
+		System.out.println("SAVE PRODUCT 2");
 		currentSession.saveOrUpdate(product);
+		System.out.println("SAVE PRODUCT 3");
 	}
 
 	@Override

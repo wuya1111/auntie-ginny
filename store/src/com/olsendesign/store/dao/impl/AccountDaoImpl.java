@@ -78,7 +78,7 @@ public class AccountDaoImpl implements AccountDao {
 	
 	@Override
 	public Account getAccountFromHash(String accountHash) {
-        System.out.println("Inside getAccountFromhash() :" + accountHash);
+        System.out.println("Inside getAccountFromhash() - AccountDaoImpl : " + accountHash);
         Account account = null;
         if( !accountHash.isEmpty() ) {
 	    	Session currentSession = sessionFactory.getCurrentSession();

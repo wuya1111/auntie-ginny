@@ -25,14 +25,21 @@
  
     <h2>Links</h2>
     <ul>
-        <li><a href="admin/stores">Stores</a>
-        <ul>
-          <c:forEach items="${stores}" var="store">
-              <li><a href="<c:url value="store/edit/${store.storeId}" />">${store.name}</a></li>
-          </c:forEach>
-        </ul>
+        <li><a href="<c:url value="/admin/main" />">Stores</a>
+	        <ul>
+	          <c:forEach items="${stores}" var="store">
+	              <li><a href="<c:url value="store/${store.storeId}/list" />">${store.name}</a></li>
+	          </c:forEach>
+	        </ul>
         </li>
-        <li><a href="profile">Profile</a>
+        <li><a href="profile">Users</a>
+	        <ul>
+	          <c:forEach items="${users}" var="user">
+	              <c:set value="${user.account}" var="account" />
+	              <li><a href="<c:url value="admin/account/${account.storeId}/list" />">${user.firstName} ${user.lastName} &lt;${account.emailAddress}&gt;</a></li>
+	          </c:forEach>
+	        </ul>
+        </li>
         <li><a href="account">Account</a>
     </ul>
  

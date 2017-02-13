@@ -120,7 +120,7 @@ public class Account {
          sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
         }
 
-        System.out.println("Account Hash (in hex format):: " + sb.toString());
+        // System.out.println("Account Hash (in hex format):: " + sb.toString());
         return sb.toString();
 	}
 	

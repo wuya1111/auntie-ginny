@@ -8,8 +8,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.olsendesign.store.dao.RoleDao;
 import com.olsendesign.store.hibernate.entity.Role;
-import com.olsendesign.store.service.impl.RoleDao;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {

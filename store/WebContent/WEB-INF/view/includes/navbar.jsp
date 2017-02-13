@@ -15,11 +15,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/store/main">${store.title}</a>
+              <a class="navbar-brand" href='<c:url value="/${store.storeId}/main" ></c:url>'>${store.title}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="<c:url value="/main" />">Home</a></li>
+                <li class="active"><a href="<c:url value="/${store.storeId}/main" />">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#support">Support</a></li>
                 <li class="dropdown">
@@ -42,12 +42,12 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-home"></span><span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="shoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
-                        <li><a href="calendar"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
-                        <li><a href="addressBook"><span class="glyphicon glyphicon-book"></span> Address Book</a></li>
+                        <li><a href="<c:url value="/${store.storeId}/profile" />"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="<c:url value="/${store.storeId}/account/${account.accountId}/shoppingCart" />"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
+                        <li><a href="<c:url value="/${store.storeId}/account/${account.accountId}/calendar" />"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
+                        <li><a href="<c:url value="/${store.storeId}/account/${account.accountId}/addressBook" />"><span class="glyphicon glyphicon-book"></span> Address Book</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="logout"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
+                        <li><a href="<c:url value="/logout" />"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
                         <c:set var="role" value="${account.role}"></c:set>
                         <c:if test="${role.roleName == 'ADMIN'}">
                             <li role="separator" class="divider"></li>
@@ -55,10 +55,14 @@
                         </c:if>
                       </ul>
                     </li>
+                    <c:if test="${errors}">
+                      <li><p class="error">${errors}</p></li>
+                    </c:if>
                   </ul>
                 </c:when>
                 <c:otherwise>
-          	      <form method="POST" action="/store/login" modelAttribute="account" class="navbar-form navbar-right">
+                  <c:url value="/${store.storeId}/login" var="loginUrl"></c:url>
+          	      <form method="POST" action="${loginUrl}" modelAttribute="account" class="navbar-form navbar-right">
 	                <div class="form-group">
 	                  <input name="emailAddress" type="email" placeholder="Email" class="form-control"/>
 	                </div>

@@ -42,6 +42,7 @@
                   <div class="container">
                       <div class="carousel-caption"> 
                           ${copySection.copyBody}                
+                          <c:url value="${copySection.copyLink}" var="copyLink"></c:url>
                           <p><a class="btn btn-lg btn-primary" href="${copySection.copyLink}" role="button">${copySection.copyLinkText}</a></p>
                       </div>
                   </div>

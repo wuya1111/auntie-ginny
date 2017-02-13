@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.olsendesign.store.dao.RoleDao;
 import com.olsendesign.store.hibernate.entity.Role;
 import com.olsendesign.store.service.RoleService;
 

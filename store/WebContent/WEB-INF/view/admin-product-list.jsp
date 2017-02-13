@@ -20,7 +20,7 @@
 <div class="godown-60" id="godown" style="padding-top:50px;"></div>
 <div class="container">
     <div class="page-header">
-        <h1>Store Editor<small> so be careful!</small></h1>
+        <h1>Product Editor<small> so be careful!</small></h1>
     </div>
  
 <div class="container">
@@ -34,12 +34,8 @@
     <div id="list" class="tab-pane fade in active">
       <h3>LIST</h3>
       <ul>
-        <li>Id: ${store.storeId}</li>
-        <li>Name: ${store.name}</li>
-        <li>Title: ${store.title}</li>
-        <li>Header Text: <pre>${store.header}</pre></li>
-        <li>Footer Text: <pre>${store.footer}</pre></li>
-        <li>Copyright: <pre>${store.copyright}</pre></li>
+        <li>Id: ${product.productId}</li>
+        <li>Name: ${product.name}</li>
       </ul>
       <div class="form-group">
 		<h3>Store Products Listing</h3>
@@ -82,9 +78,9 @@
 	  </div>
     </div>
     <div id="edit" class="tab-pane fade">
-      <h3>Update Store</h3>
-      <c:url value="/admin/store/${store.storeId}/update" var="storeUpdate"></c:url>
-	  <form:form method="POST" modelAttribute="store" action="${storeUpdate}">
+      <h3>EDIT</h3>
+      <c:url value="admin/store/${store.storeId}/update" var="updateStore"></c:url>
+	  <form:form method="POST" modelAttribute="store" action="${updateStore}">
 	    <form:input type="hidden" value="${store.storeId}" path="storeId" />
 		<div class="form-group">
 			<label for="name">Store Name</label> 
@@ -159,7 +155,7 @@
     <div id="new-prod" class="tab-pane fade">
       <h3>New Product</h3>
       
-      <c:url var="newProduct" value="admin/store/${store.storeId}/product/new" ></c:url>
+      <c:url var="newProduct" value="/admin/store/${store.storeId}/product/new" ></c:url>
       <form:form id="newProductForm" method="POST" modelAttribute="product" action="${newProduct}">
         <form:hidden value="${store.storeId}" path="store"/>
 		<div class="form-group">
