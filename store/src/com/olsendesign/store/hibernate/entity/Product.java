@@ -25,11 +25,7 @@ public class Product implements Comparable<Product> {
 	@JoinColumn(name="store_id", insertable=true, updatable=true, nullable=false)
 	private Store store;
 	
-	//private int storeId = -1;
-	
-    public Product() {
-    	
-    }
+    public Product() { }
 
 	public int getProductId() {
 		return productId;
@@ -48,19 +44,11 @@ public class Product implements Comparable<Product> {
 	}
 
 	public Store getStore() {
-		//this.storeId = this.store.getStoreId();
 		return store;
 	}
 
-/*
-	public int getStoreId() {
-		return this.storeId;
-	}
-*/
-
 	public void setStore(Store store) {
 		this.store = store;
-		//this.storeId = store.getStoreId();
 	}
 
 	@Override
