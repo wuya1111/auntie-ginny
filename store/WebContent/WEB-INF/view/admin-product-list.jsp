@@ -27,49 +27,30 @@
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#list">View</a></li>
     <li><a data-toggle="tab" href="#edit">Edit</a></li>
-    <li><a data-toggle="tab" href="#new-copy">New Store Copy</a></li>
-    <li><a data-toggle="tab" href="#new-prod">New Product</a></li>
+    <li><a data-toggle="tab" href="#new">New Product</a></li>
   </ul>
   <div class="tab-content">
     <div id="list" class="tab-pane fade in active">
-      <h3>LIST</h3>
+      <h3>List</h3>
       <ul>
         <li>Id: ${product.productId}</li>
         <li>Name: ${product.name}</li>
+        <li>Store Name: ${product.store.name}</li>
       </ul>
       <div class="form-group">
-		<h3>Store Products Listing</h3>
+		<h3>Product Listing</h3>
 		<table class="table">
 	        <tbody>
 	            <tr><th>Id</th><th>Name</th><th>-</th><th>Actions</th></tr>
-	            <c:forEach items="${store.products}" var="product">
+	            <c:forEach items="${products}" var="product">
 	            <tr>
 	                <td>${product.productId}</td>
 	                <td>${product.name}</td>
 	                <td>-</td>
 	                <td>
-	                    <a href="<c:url value="/product/edit/${product.productId}" />">edit</a> /
-	                    <a href="<c:url value="/product/delete/${product.productId}" />" >delete</a>
-	                </td>
-	            </tr>
-	            </c:forEach>
-	        </tbody>	
-	    </table>
-	  </div>
-
-      <div class="form-group">
-		<h3>Store Copy Listing</h3>
-		<table class="table">
-	        <tbody>
-	            <tr><th>Id</th><th>Name</th><th>-</th><th>Actions</th></tr>
-	            <c:forEach items="${store.storeCopy}" var="copy">
-	            <tr>
-	                <td>${copy.storeCopyId}</td>
-	                <td>${copy.copyName}</td>
-	                <td>${copy.copyType}</td>
-	                <td>
-	                    <a href="<c:url value="/admin/storecopy/edit/${copy.storeCopyId}" />">edit</a> /
-	                    <a href="<c:url value="/admin/storecopy/delete/${copy.storeCopyId}" />">delete</a>
+	                    <c:set value="${product.store}" var="pStore" />
+	                    <a href="<c:url value="/admin/store/${store.storeId}/product/${product.productId}/list" />">edit</a> /
+	                    <a href="<c:url value="/admin/store/${store.storeId}/product/${product.productId}/delete" />" >delete</a>
 	                </td>
 	            </tr>
 	            </c:forEach>
@@ -78,92 +59,30 @@
 	  </div>
     </div>
     <div id="edit" class="tab-pane fade">
-      <h3>EDIT</h3>
-      <c:url value="admin/store/${store.storeId}/update" var="updateStore"></c:url>
-	  <form:form method="POST" modelAttribute="store" action="${updateStore}">
-	    <form:input type="hidden" value="${store.storeId}" path="storeId" />
-		<div class="form-group">
-			<label for="name">Store Name</label> 
-			<form:input type="text" value="${store.name}" class="form-control" path="name" placeholder="The Name of your store" />
-		</div>
-		<div class="form-group">
-			<label for="name">Store Title</label> 
-			<form:input type="text" value="${store.title}" class="form-control" path="title" placeholder="The Title of your store" />
-		</div>
-		<div class="form-group">
-			<label for="name">Store Header</label> 
-			<form:input type="text" value="${store.header}" class="form-control" path="header" placeholder="Header Information for your store" />
-		</div>
-		<div class="form-group">
-			<label for="name">Store Copyright</label> 
-			<form:input type="text" value="${store.copyright}" class="form-control" path="copyright" placeholder="Store Copyright Information" />
-		</div>
-		<div class="form-group">
-			<label for="name">Store Footer</label> 
-			<form:input type="text" value="${store.footer}" class="form-control" path="footer" placeholder="Footer Information for your store" />
-		</div>		
-		<button type="submit" class="btn btn-default">Submit</button>
-	  </form:form>
-    </div>
-    <div id="new-copy" class="tab-pane fade">
-      <h3>New Store Copy</h3>
-      <form:form id="newStoreCopyForm" method="POST" modelAttribute="storeCopy" action="admin/storecopy/new">
-        <form:hidden value="${store.storeId}" path="store"/>
-		<div class="form-group">
-			<label for="name">Store Copy Name</label> 
-			<form:input type="text" class="form-control" path="copyName" placeholder="" />
-		</div>
-		<div class="form-group">
-			<label for="copyBody">Store Copy Body</label> 
-			<form:textarea type="text" class="form-control" path="copyBody" placeholder="" ></form:textarea>
-		</div>
-		<div class="form-group">
-			<label for="copyType">Store Copy Type</label> 
-			<form:select type="text" class="form-control" path="copyType" placeholder="">
-			    <form:option value="carousel">Carousel</form:option>
-			    <form:option value="featurette">Featurette</form:option>
-			    <form:option value="posting">Posting</form:option>
-			</form:select>
-		</div>
-		<div class="form-group">
-			<label for="startDate">Store Copy Start Date</label> 
-			<form:input type="date" class="form-control" path="startDate" placeholder="yyyy-mm-dd hh:mm:ss" />
-		</div>
-		<div class="form-group">
-			<label for="endDate">Store Copy End Date</label> 
-			<form:input type="date" class="form-control" path="endDate" placeholder="yyyy-mm-dd hh:mm:ss" />
-		</div>
-		<div class="form-group">
-			<label for="copyLink">Store Copy Link</label> 
-			<form:input type="text" class="form-control" path="copyLink" placeholder="" />
-		</div>
-		<div class="form-group">
-			<label for="copyLinkText">Store Copy Link Text</label> 
-			<form:input type="text" class="form-control" path="copyLinkText" placeholder="" />
-		</div>
-		<div class="form-group">
-			<label for="file">Store Copy Image</label> 
-			<form:input type="file" class="form-control" path="copyImage" placeholder="" />
-		</div>
-		<div class="form-group">
-			<label for="name">Store Copy Image Alt Text</label> 
-			<form:input type="text" class="form-control" path="copyImageAltText" placeholder="" />
-		</div>		
-		<button type="submit" class="btn btn-default">Submit</button>
-	  </form:form>
-    </div>
-    <div id="new-prod" class="tab-pane fade">
-      <h3>New Product</h3>
-      
-      <c:url var="newProduct" value="/admin/store/${store.storeId}/product/new" ></c:url>
-      <form:form id="newProductForm" method="POST" modelAttribute="product" action="${newProduct}">
-        <form:hidden value="${store.storeId}" path="store"/>
+      <h3>Edit Product</h3>
+      <c:url value="admin/store/${store.storeId}/product/${product.productId}/update" var="updateProductFoo"></c:url>
+      <c:url value="../${product.productId}/update" var="updateProduct"></c:url>
+	  <form:form method="POST" modelAttribute="product" action="${updateProduct}">
+	    <form:input type="hidden" path="productId" />Foo
+	    <!--  form:input type="hidden" path="store" value="${product.store.storeId}"/  -->
 		<div class="form-group">
 			<label for="name">Product Name</label> 
-			<form:input type="text" class="form-control" path="name" placeholder="Your products name" />
-		</div>      
+			<form:input type="text" value="${product.name}" class="form-control" path="name" placeholder="The Name of the new Product" />
+		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
-	  </form:form>      
+	  </form:form>
+    </div>
+    
+    <div id="new" class="tab-pane fade">
+      <h3>New Product</h3>
+      <c:url value="../new" var="newProduct" />
+      <form:form id="newStoreCopyForm" method="POST" modelAttribute="product" action="${newProduct}">
+		<div class="form-group">
+			<label for="name">Product Name</label> 
+			<form:input type="text" class="form-control" path="name" placeholder="" />
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	  </form:form>
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="product")
-public class Product {
+public class Product implements Comparable<Product> {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,8 +22,10 @@ public class Product {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name="store_id", insertable=false, updatable=false, nullable=false)
+	@JoinColumn(name="store_id", insertable=true, updatable=true, nullable=false)
 	private Store store;
+	
+	//private int storeId = -1;
 	
     public Product() {
     	
@@ -46,16 +48,29 @@ public class Product {
 	}
 
 	public Store getStore() {
+		//this.storeId = this.store.getStoreId();
 		return store;
 	}
 
+/*
+	public int getStoreId() {
+		return this.storeId;
+	}
+*/
+
 	public void setStore(Store store) {
 		this.store = store;
+		//this.storeId = store.getStoreId();
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + productId + ", name=" + name + ", store=" + store + "]";
+	}
+
+	@Override
+	public int compareTo(Product o) {
+		return name.compareTo(o.getName());
 	}
 
 }

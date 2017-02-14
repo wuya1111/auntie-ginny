@@ -46,14 +46,14 @@
 		<table class="table">
 	        <tbody>
 	            <tr><th>Id</th><th>Name</th><th>-</th><th>Actions</th></tr>
-	            <c:forEach items="${store.products}" var="product">
+	            <c:forEach items="${store.productsSorted}" var="product">
 	            <tr>
 	                <td>${product.productId}</td>
 	                <td>${product.name}</td>
 	                <td>-</td>
 	                <td>
-	                    <a href="<c:url value="/product/edit/${product.productId}" />">edit</a> /
-	                    <a href="<c:url value="/product/delete/${product.productId}" />" >delete</a>
+	                    <a href="<c:url value="/admin/store/${store.storeId}/product/${product.productId}/list" />">edit</a> /
+	                    <a href="<c:url value="/admin/store/${store.storeId}/product/${product.productId}/delete" />" >delete</a>
 	                </td>
 	            </tr>
 	            </c:forEach>
@@ -66,14 +66,14 @@
 		<table class="table">
 	        <tbody>
 	            <tr><th>Id</th><th>Name</th><th>-</th><th>Actions</th></tr>
-	            <c:forEach items="${store.storeCopy}" var="copy">
+	            <c:forEach items="${store.storeCopySorted}" var="copy">
 	            <tr>
 	                <td>${copy.storeCopyId}</td>
 	                <td>${copy.copyName}</td>
 	                <td>${copy.copyType}</td>
 	                <td>
-	                    <a href="<c:url value="/admin/storecopy/edit/${copy.storeCopyId}" />">edit</a> /
-	                    <a href="<c:url value="/admin/storecopy/delete/${copy.storeCopyId}" />">delete</a>
+	                    <a href="<c:url value="/admin/store/${store.storeId}/storecopy/${copy.storeCopyId}/list" />">edit</a> /
+	                    <a href="<c:url value="/admin/store/${store.storeId}/storecopy/${copy.storeCopyId}/delete" />">delete</a>
 	                </td>
 	            </tr>
 	            </c:forEach>

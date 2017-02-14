@@ -162,6 +162,32 @@ public class StoreController {
 		return "main-page";
 	}
 	
+	@RequestMapping(value="/{storeId}/user/{accountId}/list")
+	public String userList(
+		                   @PathVariable(value="storeId") int storeId, 
+		                   @PathVariable(value="accountId") int accountId, 
+		                   @CookieValue(value="accountCookie", defaultValue="") String accountHash, 
+			               Model model, 
+			               HttpServletResponse response
+			               ) {
+		System.out.println("Inside userList() - StoreController");
+		
+		Store store = storeService.getStore(storeId);
+		model.addAttribute("store", store);
+		
+		Account authenticated_account = null;
+		authenticated_account = accountService.getAccountFromHash(accountHash);
+		
+		if ( authenticated_account != null && accountId == authenticated_account.getAccountId() ) {
+		    model.addAttribute("account", authenticated_account );
+		    model.addAttribute("user", authenticated_account.getUser());
+		    Cookie accountCookie = new Cookie("accountCookie", authenticated_account.getAccountHash());
+			response.addCookie(accountCookie);			
+			return "profile";
+		}
+	    return "main";	
+	}
+	
 	@RequestMapping(value="/{storeId}/user/update")
 	public String userUpdate(
 			            @ModelAttribute("user") User user,

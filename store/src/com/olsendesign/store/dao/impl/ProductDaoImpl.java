@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.olsendesign.store.dao.ProductDAO;
 import com.olsendesign.store.hibernate.entity.Product;
@@ -34,11 +35,8 @@ public class ProductDaoImpl implements ProductDAO {
 
 	@Override
 	public void saveProduct(Product product) {
-		System.out.println("SAVE PRODUCT 1");
 		Session currentSession = sessionFactory.getCurrentSession();
-		System.out.println("SAVE PRODUCT 2");
 		currentSession.saveOrUpdate(product);
-		System.out.println("SAVE PRODUCT 3");
 	}
 
 	@Override
@@ -47,6 +45,12 @@ public class ProductDaoImpl implements ProductDAO {
 		Query query = currentSession.createQuery("delete from Product where id=:productId");
         query.setParameter("productId", productId);
         query.executeUpdate();
+	}
+
+	@Override
+	public List<Product> getAllProductsForStoreId(int storeId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

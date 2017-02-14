@@ -92,6 +92,14 @@ public class User {
 		this.suffix = suffix;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
 	@Override
 	public String toString() {
 		return "User [accountId=" + accountId + ", salutation=" + salutation + ", firstName=" + firstName

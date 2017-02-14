@@ -1,6 +1,8 @@
 package com.olsendesign.store.hibernate.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.internal.util.compare.ComparableComparator;
 
 @Entity
 @Table(name="store")
@@ -57,7 +61,7 @@ public class Store {
 	public void setStoreId(int id) {
 		this.storeId = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -131,6 +135,13 @@ public class Store {
 	public Set<StoreCopy> getStoreCopy() {
 		return storeCopy;
 	}
+	
+	public List<StoreCopy> getStoreCopySorted() {
+		ArrayList<StoreCopy> list = new ArrayList<StoreCopy>(storeCopy);
+		ComparableComparator<StoreCopy> c = new ComparableComparator<StoreCopy>();
+		list.sort(c);
+		return list;
+	}
 
 	public void setStoreCopy(Set<StoreCopy> storeCopy) {
 		this.storeCopy = storeCopy;
@@ -152,9 +163,16 @@ public class Store {
 		this.products.add(product);
 	}
 
+	public List<Product> getProductsSorted() {
+		ArrayList<Product> list = new ArrayList<Product>(products);
+		ComparableComparator<Product> c = new ComparableComparator<Product>();
+		list.sort(c);
+		return list;
+	}
+	
 	@Override
 	public String toString() {
-		return "Store [id=" + storeId + ", name=" + name + ", storeCopy=" + storeCopy + ", products=" + products
+		return "Store [id=" + storeId + ", name=" + name + ", storeCopy=" + storeCopy.size() + ", products=" + products.size()
 				+ ", header=" + header + ", footer=" + footer + ", copyright=" + copyright + "]";
 	}
 

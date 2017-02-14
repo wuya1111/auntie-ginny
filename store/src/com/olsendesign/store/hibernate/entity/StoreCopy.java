@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="store_copy")
-public class StoreCopy {
+public class StoreCopy implements Comparable<StoreCopy> {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -61,7 +61,7 @@ public class StoreCopy {
 	public Store getStore() {
 		return this.store;
 	}
-
+	
 	public void setStore(Store store) {
 		this.store = store;
 	}
@@ -164,9 +164,14 @@ public class StoreCopy {
 
 	@Override
 	public String toString() {
-		return "StoreCopy [storeCopyId=" + storeCopyId + ", store=" + store + ", copyName=" + copyName + ", copyBody="
+		return "StoreCopy [storeCopyId=" + storeCopyId + ", store=" + store.getName() + ", copyName=" + copyName + ", copyBody="
 				+ copyBody + ", copyLink=" + copyLink + ", copyImage=" + copyImage + ", copyType=" + copyType
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+	}
+
+	@Override
+	public int compareTo(StoreCopy o) {
+        return copyOrder.compareTo(o.copyOrder);	
 	}
 	
 }

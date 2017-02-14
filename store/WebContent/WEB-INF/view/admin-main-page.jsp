@@ -32,17 +32,32 @@
 	          </c:forEach>
 	        </ul>
         </li>
-        <li><a href="profile">Users</a>
+        <li><a href="profile">Active Users</a>
 	        <ul>
 	          <c:forEach items="${users}" var="user">
 	              <c:set value="${user.account}" var="account" />
-	              <li><a href="<c:url value="admin/account/${account.storeId}/list" />">${user.firstName} ${user.lastName} &lt;${account.emailAddress}&gt;</a></li>
+	              <c:if test="${account.active}">
+	                <li><a href="<c:url value="/admin/user/${account.accountId}/list" />">${user.firstName} ${user.lastName} &lt;${account.emailAddress}&gt;</a></li>
+	              </c:if>
 	          </c:forEach>
 	        </ul>
         </li>
-        <li><a href="account">Account</a>
+        <li><a href="account">Accounts</a>
+            <ul>
+	          <c:forEach items="${accounts}" var="account">
+	              <c:set value="${account.user}" var="user" />
+	              <li><a href="<c:url value="/admin/user/${account.accountId}/list" />">${user.firstName} ${user.lastName} &lt;${account.emailAddress}&gt; ${account.role.roleName}</a></li>
+	          </c:forEach>
+	        </ul>
+        </li>
+        <li><a href="account">Products</a>
+            <ul>
+	          <c:forEach items="${products}" var="product">
+	              <c:set value="${product.store}" var="pStore" />
+	              <li><a href="<c:url value="/admin/store/${pStore.storeId}/product/${product.productId}/list" />">${product.name}</a></li>
+	          </c:forEach>
+	        </ul>
+        </li>
     </ul>
- 
     <hr/>
-
     <jsp:include page="includes/footer.jsp"></jsp:include>
