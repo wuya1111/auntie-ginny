@@ -123,7 +123,7 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `name` varchar(40) DEFAULT NULL,
+  `address_name` varchar(40) DEFAULT NULL,
   `street_address_1` varchar(50) DEFAULT NULL,
   `street_address_2` varchar(50) DEFAULT NULL,
   `city` varchar(20) DEFAULT NULL,

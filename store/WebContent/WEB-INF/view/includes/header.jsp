@@ -26,6 +26,11 @@
 	  $(document).ready(function() {
 	    $(".dropdown-toggle").dropdown();
 	  });
+	  
+	  $(function () {
+		  $('[data-toggle="popover"]').popover()
+	  });
+	  
 	</script>
   </head>
   <body>
