@@ -80,6 +80,7 @@ public class AdminController {
 	        Cookie accountCookie = new Cookie("accountCookie", account.getAccountHash());
 	        response.addCookie(accountCookie);
 	        
+	        model.addAttribute("accounts", accountService.getAllAccounts());
 	        model.addAttribute("products", productService.getAllProducts());
 	        model.addAttribute("roles", roleService.getAllRoles());
 	        model.addAttribute("storeCopy", storeCopyService.getAllStoreCopy());

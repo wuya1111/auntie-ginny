@@ -75,6 +75,22 @@ public class AccountDaoImpl implements AccountDao {
         }
         return auth_account;
 	}
+
+
+	@Override
+	public boolean isEmailAddressUsed(String emailAddress) {
+        System.out.println("Inside isEmailAddressUsed() - AccountDaoImpl : " + emailAddress );
+        
+        Account trash = null;
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query query = currentSession.createQuery("from Account where emailAddress=:emailAddress");
+        query.setParameter("emailAddress", emailAddress);
+        trash = (Account) query.getSingleResult();
+        if ( trash != null ) {
+        	return true;
+        }
+		return false;
+	}	
 	
 	@Override
 	public Account getAccountFromHash(String accountHash) {
@@ -118,5 +134,6 @@ public class AccountDaoImpl implements AccountDao {
         }
         System.out.println("Digest(in hex format):: " + sb.toString());
         return sb.toString();
-	}	
+	}
+
 }

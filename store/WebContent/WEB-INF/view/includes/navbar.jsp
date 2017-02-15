@@ -47,7 +47,7 @@
                         <li><a href="<c:url value="/${store.storeId}/account/${account.accountId}/calendar" />"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
                         <li><a href="<c:url value="/${store.storeId}/account/${account.accountId}/addressBook" />"><span class="glyphicon glyphicon-book"></span> Address Book</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="<c:url value="/logout" />"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
+                        <li><a href="<c:url value="/${store.storeId}/logout" />"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
                         <c:set var="role" value="${account.role}"></c:set>
                         <c:if test="${role.roleName == 'ADMIN'}">
                             <li role="separator" class="divider"></li>

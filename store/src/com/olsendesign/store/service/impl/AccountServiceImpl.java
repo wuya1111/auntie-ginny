@@ -52,5 +52,11 @@ public class AccountServiceImpl implements AccountService {
 		return accountDAO.getAccountFromHash(accountHash);
 	}
 
+	@Override
+	@Transactional
+	public boolean isEmailAddressUsed(String emailAddress) {
+		return accountDAO.isEmailAddressUsed(emailAddress);
+	}
+
 	
 }

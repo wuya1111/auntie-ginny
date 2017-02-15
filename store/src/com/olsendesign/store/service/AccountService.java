@@ -11,4 +11,5 @@ public interface AccountService {
 	public void deleteAccount(int theId);
 	public Account loginUser(Account theAccount);
 	public Account getAccountFromHash(String accountHash);
+	public boolean isEmailAddressUsed(String emailAddress);
 }

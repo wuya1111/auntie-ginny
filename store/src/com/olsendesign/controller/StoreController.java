@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.olsendesign.store.hibernate.entity.Account;
 import com.olsendesign.store.hibernate.entity.Store;
@@ -160,6 +161,50 @@ public class StoreController {
 		response.addCookie(cookie);
 		
 		return "main-page";
+	}
+
+	@RequestMapping(value="/{storeId}/account/new")
+	public String accountCreate(
+		                @PathVariable(value="storeId") int storeId, 
+		                @RequestParam(value="emailAddress", name="emailAddress") String emailAddress,
+		                @RequestParam(value="passwordOne", name="passwordOne") String passwordOne,
+		                @RequestParam(value="passwordTwo", name="passwordTwo") String passwordTwo,
+		                //@RequestParam(value="firstName", name="firstName") String firstName,
+		                //@RequestParam(value="lastName", name="lastName") String lastName,
+			            Model model, 
+			            HttpServletResponse response
+			            ) {
+		System.out.println("Inside accountCreate() - StoreController");
+		
+		Store store = storeService.getStore(storeId);
+		model.addAttribute("store", store);
+		
+		Account account = new Account();
+		User user = new User();
+		if ( passwordOne.equals(passwordTwo) ) {
+			if ( ! isEmailAddressUsed(emailAddress) ) {
+				account.setEmailAddress(emailAddress);
+				account.setPassword(passwordOne);
+				user.setAccount(account);
+				account.setUser(user);
+				accountService.saveAccount(account);
+				userService.saveUser(user);
+				model.addAttribute("errors", "Acccount Created. Please Log In.");
+			} else {
+			    model.addAttribute("errors", "Email Address Already Exists");
+			}
+		} else {
+			model.addAttribute("errors", "Passwords where not the same");
+		}
+				
+		Cookie cookie = new Cookie("storeId", new Integer(store.getStoreId()).toString() );
+		response.addCookie(cookie);
+		
+		return "main-page";
+	}
+
+	private boolean isEmailAddressUsed(String emailAddress) {
+		return accountService.isEmailAddressUsed(emailAddress);
 	}
 	
 	@RequestMapping(value="/{storeId}/user/{accountId}/list")

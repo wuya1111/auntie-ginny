@@ -11,4 +11,5 @@ public interface AccountDao {
 	void deleteAccount(int theId);
 	Account loginUser(Account account);
 	Account getAccountFromHash(String accountHash);
+	boolean isEmailAddressUsed(String emailAddress);
 }
