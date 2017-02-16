@@ -31,6 +31,17 @@
 		  $('[data-toggle="popover"]').popover()
 	  });
 	  
+	  $(function() {
+		     $('.signUpModal').on('show.bs.modal', function () {
+		    });
+	  });
+	  
+	  $(document).ready(function() {
+		  var form = document.getElementById("newAccountForm");
+	      document.getElementById("newAccountSubmit").addEventListener("click", function () {
+	          form.submit(); 
+	      });  
+	  });
 	</script>
   </head>
   <body>

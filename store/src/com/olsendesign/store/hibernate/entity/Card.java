@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 
-@Entity
+//@Entity
 public class Card {
 
 	private int cardId;

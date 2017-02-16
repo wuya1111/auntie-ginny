@@ -167,8 +167,8 @@ public class StoreController {
 	public String accountCreate(
 		                @PathVariable(value="storeId") int storeId, 
 		                @RequestParam(value="emailAddress", name="emailAddress") String emailAddress,
-		                @RequestParam(value="passwordOne", name="passwordOne") String passwordOne,
-		                @RequestParam(value="passwordTwo", name="passwordTwo") String passwordTwo,
+		                @RequestParam(value="passwordOne", name="passwordOne", defaultValue="") String passwordOne,
+		                @RequestParam(value="passwordTwo", name="passwordTwo", defaultValue="") String passwordTwo,
 		                //@RequestParam(value="firstName", name="firstName") String firstName,
 		                //@RequestParam(value="lastName", name="lastName") String lastName,
 			            Model model, 

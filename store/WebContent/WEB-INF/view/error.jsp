@@ -18,14 +18,15 @@
     Exception:  ${exception.message}
     <pre style="">
     <c:forEach items="${exception.stackTrace}" var="ste">
-        <c:choose>
+            ${ste}
+        <%-- c:choose>
           <c:when test="${ste.matches("olsendesign")}" >
             <strong>${ste}</strong>
           </c:when>
           <c:otherwise>
             ${ste}
           </c:otherwise>
-        </c:choose>
+        </c:choose --%>
     </c:forEach>
     </pre>
 </body>

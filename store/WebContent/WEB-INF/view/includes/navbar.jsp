@@ -67,7 +67,7 @@
                       <input name="password" type="password" placeholder="Password" class="form-control">
                     </div>
                     <input type="submit" class="btn btn-default" value="Sign In"></input>
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">Sign Up!</button>
+                    <button type="button" class="btn btn-primary" onclick='$("#signUpModal").modal("show");'>Sign Up!</button>
                   </form>              
                 </c:otherwise>
               </c:choose>
@@ -76,31 +76,4 @@
         </nav>
       </div><!-- /.container -->
     </div><!-- /.navbar-wrapper -->
-    
-  <div>
-    <!--  MODAL SIGN UP BEGIN -->
-    <div id="signUpModal" class="modal modal-fade" role="dialog" tabindex="-1">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Sign Up Now!</h4>
-          </div>
-          <div class="modal-body">
-            <form:form action="account/new" method="POST">
-              <div class="form-group">
-                <input name="emailAddress" type="email" placeholder="Email" class="form-control" />
-              </div>
-            </form:form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- MODAL END -->
-  </div>
+  

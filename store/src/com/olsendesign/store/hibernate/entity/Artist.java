@@ -2,7 +2,7 @@ package com.olsendesign.store.hibernate.entity;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Artist {
 
 	private int artistId;

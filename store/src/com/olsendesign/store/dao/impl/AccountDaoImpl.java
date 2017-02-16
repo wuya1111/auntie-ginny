@@ -85,7 +85,12 @@ public class AccountDaoImpl implements AccountDao {
         Session currentSession = sessionFactory.getCurrentSession();
         Query query = currentSession.createQuery("from Account where emailAddress=:emailAddress");
         query.setParameter("emailAddress", emailAddress);
-        trash = (Account) query.getSingleResult();
+        try {
+            trash = (Account) query.getSingleResult();
+			System.out.println("  EMAIL ADDRESS FOUND IN USE : " + emailAddress);
+		} catch (Exception e) {
+			System.out.println("  EMAIL ADDRESS NOT IN USE : " + emailAddress);
+		}
         if ( trash != null ) {
         	return true;
         }
