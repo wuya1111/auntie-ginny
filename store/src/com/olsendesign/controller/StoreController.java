@@ -169,8 +169,6 @@ public class StoreController {
 		                @RequestParam(value="emailAddress", name="emailAddress") String emailAddress,
 		                @RequestParam(value="passwordOne", name="passwordOne", defaultValue="") String passwordOne,
 		                @RequestParam(value="passwordTwo", name="passwordTwo", defaultValue="") String passwordTwo,
-		                @RequestParam(value="firstName", name="firstName", defaultValue="-NONE-") String firstName,
-		                @RequestParam(value="lastName", name="lastName", defaultValue="-NONE-") String lastName,
 			            Model model, 
 			            HttpServletResponse response
 			            ) {
@@ -182,28 +180,17 @@ public class StoreController {
 		Account account = new Account();
 		User user = new User();
 		
-		if ( firstName != "-NONE-" ) {
-			user.setFirstName(firstName);
-		}
-		if ( lastName != "-NONE-" ) {
-			user.setLastName(lastName);
-		}
-		
 		if ( passwordOne.equals(passwordTwo) ) {
 			if ( ! isEmailAddressUsed(emailAddress) ) {
 				account.setEmailAddress(emailAddress);
-				
 				account.setPassword(passwordOne);
 				account.hashSavedPassword();
-				
 				user.setAccount(account);
 				userService.saveUser(user);
 				
 				account.setUser(user);
 				accountService.saveAccount(account);
-				
 				account.sendVerifyEmail(store.getName());
-				
 				model.addAttribute("errors", "Acccount Created. Please Log In.");
 			} else {
 			    model.addAttribute("errors", "Email Address Already Exists");
@@ -214,7 +201,7 @@ public class StoreController {
 		Cookie cookie = new Cookie("storeId", new Integer(store.getStoreId()).toString() );
 		response.addCookie(cookie);
 		
-		return "redirect:/" + store.getStoreId() + "/profile";
+		return "/" + store.getStoreId() + "/profile";
 	}
 
 	private boolean isEmailAddressUsed(String emailAddress) {

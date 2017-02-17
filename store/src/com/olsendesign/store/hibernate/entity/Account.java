@@ -183,7 +183,7 @@ public class Account {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("hepaestus@gmail.com","8!ack5mith");
+					return new PasswordAuthentication("@gmail.com","");
 				}
 			});
 

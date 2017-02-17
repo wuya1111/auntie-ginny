@@ -48,7 +48,7 @@
             <h4 class="modal-title" id="myModalLabel">Uh Oh! There was an error!</h4>
           </div>
           <div class="modal-body">
-              <p>${error}</p>
+              <p>${errors}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

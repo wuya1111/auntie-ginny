@@ -161,15 +161,16 @@ DROP TABLE IF EXISTS `artist`;
 CREATE TABLE `artist` (
   `artist_id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
-  `art_name` varchar(50) DEFAULT NULL,
-  `art_url` varchar(100) DEFAULT NULL,
-  `art_image_path` varchar(100) DEFAULT NULL,
+  `artist_name` varchar(50) DEFAULT NULL,
+  `artist_url` varchar(100) DEFAULT NULL,
+  `artist_image_path` varchar(100) DEFAULT NULL,
   `artist_statement` varchar(500) DEFAULT NULL,
   
   PRIMARY KEY (`artist_id`),
   INDEX `FK_A_ACCOUNT` (`account_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+insert into artist (ARTIST_ID, ACCOUNT_ID, ARTIST_NAME, ARTIST_URL, ARTIST_IMAGE_PATH, ARTIST_STATEMENT ) VALUES (1,1,'Artist Name One','http://artist_one.com','/artist/file/path/image_file_name_one.ext');
 
 
 DROP TABLE IF EXISTS `tag`;
@@ -182,7 +183,23 @@ CREATE TABLE `tag` (
   #INDEX `FK_` (`account_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `artist_tag`;
 
+CREATE TABLE `artist_tag` (
+  `artist_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag_id`  int(11) NOT NULL,
+  
+  PRIMARY KEY (`tag_id`),
+  INDEX `FK_ARTIST_TAG` (`artist_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `art_tag` (
+  `art_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag_id`  int(11) NOT NULL,
+  
+  PRIMARY KEY (`tag_id`),
+  INDEX `FK_ART_TAG` (`art_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 ALTER TABLE art
