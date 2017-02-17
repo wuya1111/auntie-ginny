@@ -33,7 +33,8 @@
 	  
 	  $(function() {
 		     $('.signUpModal').on('show.bs.modal', function () {
-		    });
+		    	 // Add other code that runs when modal appears
+		     });
 	  });
 	  
 	  $(document).ready(function() {
@@ -42,6 +43,14 @@
 	          form.submit(); 
 	      });  
 	  });
+	  
+	  <c:if test="${errors}" >
+	  $(document).ready(function() {
+		  $('#myModal').modal('show'); 
+		  alert("Errors Exist :( " + "${errors}" );
+      });
+	  </c:if>
+	  
 	</script>
   </head>
   <body>

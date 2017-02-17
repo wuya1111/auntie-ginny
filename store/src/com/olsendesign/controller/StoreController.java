@@ -169,8 +169,8 @@ public class StoreController {
 		                @RequestParam(value="emailAddress", name="emailAddress") String emailAddress,
 		                @RequestParam(value="passwordOne", name="passwordOne", defaultValue="") String passwordOne,
 		                @RequestParam(value="passwordTwo", name="passwordTwo", defaultValue="") String passwordTwo,
-		                //@RequestParam(value="firstName", name="firstName") String firstName,
-		                //@RequestParam(value="lastName", name="lastName") String lastName,
+		                @RequestParam(value="firstName", name="firstName", defaultValue="-NONE-") String firstName,
+		                @RequestParam(value="lastName", name="lastName", defaultValue="-NONE-") String lastName,
 			            Model model, 
 			            HttpServletResponse response
 			            ) {
@@ -181,14 +181,29 @@ public class StoreController {
 		
 		Account account = new Account();
 		User user = new User();
+		
+		if ( firstName != "-NONE-" ) {
+			user.setFirstName(firstName);
+		}
+		if ( lastName != "-NONE-" ) {
+			user.setLastName(lastName);
+		}
+		
 		if ( passwordOne.equals(passwordTwo) ) {
 			if ( ! isEmailAddressUsed(emailAddress) ) {
 				account.setEmailAddress(emailAddress);
+				
 				account.setPassword(passwordOne);
+				account.hashSavedPassword();
+				
 				user.setAccount(account);
+				userService.saveUser(user);
+				
 				account.setUser(user);
 				accountService.saveAccount(account);
-				userService.saveUser(user);
+				
+				account.sendVerifyEmail(store.getName());
+				
 				model.addAttribute("errors", "Acccount Created. Please Log In.");
 			} else {
 			    model.addAttribute("errors", "Email Address Already Exists");
@@ -196,11 +211,10 @@ public class StoreController {
 		} else {
 			model.addAttribute("errors", "Passwords where not the same");
 		}
-				
 		Cookie cookie = new Cookie("storeId", new Integer(store.getStoreId()).toString() );
 		response.addCookie(cookie);
 		
-		return "main-page";
+		return "redirect:/" + store.getStoreId() + "/profile";
 	}
 
 	private boolean isEmailAddressUsed(String emailAddress) {

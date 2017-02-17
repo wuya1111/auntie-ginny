@@ -35,11 +35,35 @@
     </div>
     <!-- MODAL END -->
     </c:if>
-    <footer>
-        <p>${store.footer}</p>
-        <p>&copy; ${store.copyright} ${store.title}</p>
-    </footer>
-  </div> <!-- ?container -->
+   
+    <c:if test="${errors}">
+    <!--  MODAL ERRORS POP UP CODE -->
+    <div id="errorModal" class="modal modal-fade" role="dialog" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Uh Oh! There was an error!</h4>
+          </div>
+          <div class="modal-body">
+              <p>${error}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL END -->
+    </c:if>
+    
+    <div class="container">
+      <div>DEBUG ERRORS: ${errors}</div>
+      <footer>${store.footer}</footer>
+      <div>${store.copyright}</div>
+    </div> <!-- ?container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

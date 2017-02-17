@@ -2,7 +2,17 @@ package com.olsendesign.store.hibernate.entity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +45,12 @@ public class Account {
 	@Column(name="hash")
 	private String hash;
 	
+	@Column(name="verified")
+	private boolean verified;
+	
+	@Column(name="verify_account_hash")
+	private String verifyAccountHash;
+
 	@ManyToOne
 	@JoinColumn(name="role_id")
 	private Role role;
@@ -119,8 +135,30 @@ public class Account {
         for (int i = 0; i < byteData.length; i++) {
          sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
         }
+        return sb.toString();
+	}
 
-        // System.out.println("Account Hash (in hex format):: " + sb.toString());
+	public void hashSavedPassword() {
+		System.out.println("  HASHING The Password - only do this once before saving to DB");
+		this.password = hashPassword(password);
+	}
+	
+	// TODO - Remove this and the others copies of this to a util class	
+	private String hashPassword(String password) {
+        MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+        md.update(password.getBytes());
+        byte byteData[] = md.digest();
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        System.out.println("Digest(in hex format):: " + sb.toString());
         return sb.toString();
 	}
 	
@@ -132,5 +170,35 @@ public class Account {
 		 *  If you do the toString will change from when it was used to generate the hash and won't be usable in the retrieval.
 		 */
 		return "Account [id=" + accountId + ", emailAddress=" + emailAddress + ", active=" + active + "]";
+	}
+
+	public void sendVerifyEmail(String storeName) {
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+
+		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("hepaestus@gmail.com","8!ack5mith");
+				}
+			});
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("from@no-spam.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(this.emailAddress));
+			message.setSubject("Testing Subject");
+			message.setText("\n   Verify Link : http://localhost:8081/store/account/verify/" + this.verifyAccountHash + " \n\n");
+			Transport.send(message);
+			System.out.println("Send Email to " + this.emailAddress + " Done");
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

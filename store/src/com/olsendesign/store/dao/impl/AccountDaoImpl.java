@@ -123,6 +123,7 @@ public class AccountDaoImpl implements AccountDao {
         return account;
 	}
 
+	// TODO - Remove this and the others copies of this to a util class
 	private String hashPassword(String password) {
         MessageDigest md = null;
 		try {
