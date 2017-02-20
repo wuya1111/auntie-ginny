@@ -69,7 +69,6 @@ public class AccountDaoImpl implements AccountDao {
 	        auth_account.setActive(true);
 	        auth_account.setHash(auth_account.getAccountHash());
 	        currentSession.saveOrUpdate(auth_account);
-	        //auth_account.setAccountHash();
         }catch (Exception e) {
         	auth_account = null;
         }
@@ -109,13 +108,16 @@ public class AccountDaoImpl implements AccountDao {
 				account = (Account) query.getSingleResult();
                 System.out.println("   Found Account Based On Account Hash:" + account.getEmailAddress());
 			} catch (NoResultException e) {
-                System.out.println("  No Account found with hash : " + accountHash);
+                System.out.println("  NRE - No Account found with hash : " + accountHash);
 				account = null;
 				e.printStackTrace();
 			} catch (NullPointerException e) {
-				System.out.println("  No Account found with hash : " + accountHash);
+				System.out.println("  NPE- No Account found with hash : " + accountHash);
 				account = null;
 				e.printStackTrace();
+			} catch (Exception e) {
+				System.out.println("  E- No Account found with hash : " + accountHash);
+				account = null;
 			}
         } else {
             System.out.println("   No Hash Passed:");
@@ -124,6 +126,10 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	// TODO - Remove this and the others copies of this to a util class
+	/*
+	 * Is this the best strategy for this? Is it ok to use a reversible hash? 
+	 * 
+	 */
 	private String hashPassword(String password) {
         MessageDigest md = null;
 		try {
@@ -141,5 +147,4 @@ public class AccountDaoImpl implements AccountDao {
         System.out.println("Digest(in hex format):: " + sb.toString());
         return sb.toString();
 	}
-
 }
