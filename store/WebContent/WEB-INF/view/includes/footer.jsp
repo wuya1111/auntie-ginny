@@ -21,7 +21,13 @@
               <div class="form-group">
                 <label>Enter your email address:</label>
                 <input name="emailAddress" type="email" placeholder="Email" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Enter A Password:</label>
                 <input name="passwordOne" type="password" placeholder="password" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label>Confirm Your Password:</label>
                 <input name="passwordTwo" type="password" placeholder="password confirm" class="form-control" />
               </div>
             </form>
@@ -36,7 +42,7 @@
     <!-- MODAL END -->
     </c:if>
    
-    <c:if test="${errors}">
+    <c:if test="${errors != null}">
     <!--  MODAL ERRORS POP UP CODE -->
     <div id="errorModal" class="modal modal-fade" role="dialog" tabindex="-1">
       <div class="modal-dialog">
@@ -58,6 +64,30 @@
     </div>
     <!-- MODAL END -->
     </c:if>
+    
+    <c:if test="${message != null}">
+    <!--  MODAL ERRORS POP UP CODE -->
+    <div id="messageModal" class="modal modal-fade" role="dialog" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">We have a message for you!</h4>
+          </div>
+          <div class="modal-body">
+              <p>${message}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL END -->
+    </c:if>
+    
     
     <div class="container">
       <div>DEBUG ERRORS: ${errors}</div>

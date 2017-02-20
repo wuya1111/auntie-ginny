@@ -44,13 +44,19 @@
 	      });  
 	  });
 	  
-	  <c:if test="${errors}" >
+	  <c:if test="${errors != null}" >
 	  $(document).ready(function() {
-		  $('#myModal').modal('show'); 
-		  alert("Errors Exist :( " + "${errors}" );
+		  $('#errorModal').modal('show'); 
+		  //alert("Errors Exist :( " + "${errors}" );
       });
 	  </c:if>
 	  
+	  <c:if test="${message != null}" >
+	  $(document).ready(function() {
+		  $('#messageModal').modal('show'); 
+      });
+	  </c:if>
+ 
 	</script>
   </head>
   <body>
