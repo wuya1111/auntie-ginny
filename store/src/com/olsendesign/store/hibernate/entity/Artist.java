@@ -1,5 +1,6 @@
 package com.olsendesign.store.hibernate.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,6 +30,9 @@ public class Artist {
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private Account account;
+	
+	@Column(name="artist_name")
+	private String artistName;
 	
 	@Column(name="artist_statement")
 	private String artistStatement;
@@ -67,6 +71,30 @@ public class Artist {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
+	}
+
+	public String getArtistUrl() {
+		return artistUrl;
+	}
+
+	public void setArtistUrl(String artistUrl) {
+		this.artistUrl = artistUrl;
+	}
+
+	public String getArtistImagePath() {
+		return artistImagePath;
+	}
+
+	public void setArtistImagePath(String artistImagePath) {
+		this.artistImagePath = artistImagePath;
 	}
 
 	public String getArtistStatement() {

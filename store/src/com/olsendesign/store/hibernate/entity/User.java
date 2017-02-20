@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -36,10 +36,10 @@ public class User {
 	@Column(name="suffix")
 	private String suffix;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@Id @OneToOne
+	@JoinColumn(name="account_id")
 	private Account account;
-	
+
 	public User() {
 		
 	}

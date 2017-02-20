@@ -1,5 +1,6 @@
 package com.olsendesign.store.hibernate.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,12 +33,16 @@ public class Art {
 	@Column(name="art_title")
 	private String artTitle;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
 	private Artist artist;
 	
 	@Column(name="art_file_path")
 	private String artFilePath;
 
+	
+	@Column(name="art_date")
+	private Date artDate;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "art_tag", catalog = "test", joinColumns = {
 			@JoinColumn(name = "art_id", nullable = false, updatable = false) },
@@ -84,6 +91,22 @@ public class Art {
 
 	public void setArtFilePath(String artFilePath) {
 		this.artFilePath = artFilePath;
+	}
+
+	public Date getArtDate() {
+		return artDate;
+	}
+
+	public void setArtDate(Date artDate) {
+		this.artDate = artDate;
+	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

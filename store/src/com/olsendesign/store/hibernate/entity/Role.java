@@ -22,19 +22,19 @@ public class Role {
 	public Role() {		
 	}
 
-	public int getProductId() {
+	public int getRoleId() {
 		return roleId;
 	}
 
-	public void setProductId(int productId) {
-		this.roleId = productId;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getRoleName() {
 		return roleName;
 	}
 
-	public void setRollName(String roleName) {
+	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
 
@@ -42,4 +42,6 @@ public class Role {
 	public String toString() {
 		return "Role [productId=" + roleId + ", roleName=" + roleName + "]";
 	}
+
+
 }
